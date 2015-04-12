@@ -17,8 +17,17 @@ data$Time <- strptime(data$Time,format="%H:%M:%S")
 
 good_days <- (data$Date >= "2007-02-01") & (data$Date <= "2007-02-02")
 
+# first and last row of interest
+# row_begin <- min(which(good_days))
+# 66637
+# row_end <- max(which(good_days))
+# 69516
+
+
 data_good <- data[good_days,]
 
+
+## Plot 1
 hist(data_good$Global_active_power,
      main="Global Active Power",
      xlab="Global Active Power (kilowatts)",
@@ -27,4 +36,8 @@ hist(data_good$Global_active_power,
 dev.copy(png, file = "plot1.png",
          width = 480, 
          height = 480)
+dev.off()
+
+
+
 
