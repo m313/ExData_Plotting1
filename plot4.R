@@ -1,23 +1,23 @@
-# Coursera Exploratory Data Analysis - Assignment 1 - Plot 1
-#
+# Coursera Exploratory Data Analysis - Assignment 1 - Plot 4
 #
 # Estimating required memory for reading data
 # 2075259 rows * 9 columns * 8 bytes/numeric / (2^20)
 # =~ 142 MB
 
 
-# Reading data
+# Read data file
 data <- read.table("../household_power_consumption.txt", 
                    na.strings="?", sep=";", header=TRUE, nrows=-1)
 
 # Combine date and time info into data$Time
 data$Time <- strptime(paste(data$Date, data$Time),format="%d/%m/%Y %H:%M:%S")
 
+# Select the two days of interest
 good_days <- (data$Time >= "2007-02-01") & (data$Time < "2007-02-03")
-
 data_good <- data[good_days,]
 
-# Prepare arrangement
+
+# Prepare plot arrangement
 par(mfrow = c(2, 2))
 
 ## Plot 1
@@ -53,6 +53,7 @@ plot(data_good$Time, data_good$Global_reactive_power,
      xlab="datetime",
      ylab="Global_reactive_power")
 
+# Save PNG
 dev.copy(png, file = "plot4.png",
          width = 480, 
          height = 480)
